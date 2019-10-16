@@ -1,0 +1,2 @@
+# WordGuessName
+Javascript exercise
