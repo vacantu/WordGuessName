@@ -48,27 +48,31 @@ $(document).ready(function() {
         }
 
     // EVENT LISTENERS
-        addEventListener("click", function() {
-            event.preventDefault();
-            resetGame();
-            newWord = hangman.wordToGuess();   
-            console.log("nueva:", newWord);
-            // SET HOW MANY CHANCES WE HAVE
-            maxGuesses = newWord.length;
-            renderWordSpaces(newWord.length);
+    addEventListener("click", function() {
+        resetGame();
+        newWord = hangman.wordToGuess();   
+        console.log("New word:", newWord);
+        // SET HOW MANY CHANCES WE HAVE
+        maxGuesses = newWord.length;
+        // RENDER WORD TEMPLATE
+        renderWordTemplate(newWord.length);
+        // DISPLAY UPDATED STATS
+        updateGameData();
+    });
+
+    addEventListener("keyup", function(e) {
+        let k = e.key.toUpperCase();
+        if (isAlpha(k) && !pauseGame) {
+            letterInWord(k);
+        }
+    });
+
+    // CHECK IF KEY PRESSED IS BETWEEN A-Z
+    function isAlpha(k) {
+        return /^[A-Z]$/i.test(k);
+    }
     
-    // DISPLAY UPDATED STATS
-            updateGameData();
-        });
-
-        addEventListener("keyup", function(event) {
-            let k = event.key;
-            k = k.toUpperCase();
-            let pos = newWord.toUpperCase().indexOf(k);
-            checkLetter(k);
-        });
-
-    function renderWordSpaces(wordSize) {
+    function renderWordTemplate(wordSize) {
         for (var i=0, j=wordSize; i < j; i++){
             if (newWord[i] === " ") {
                 guessingWord.push(" ")
@@ -76,7 +80,8 @@ $(document).ready(function() {
                 guessingWord.push("_")
             }
         }
-    }    
+    }
+
     // RESET GAME
     function resetGame() {
         //numGuess = maxGuesses;
@@ -85,12 +90,12 @@ $(document).ready(function() {
         guessedLetters = [];
         guessingWord = [];
     }
+    
     // CHECK & RENDER GUESSED LETTERS
-    function checkLetter(letter) {
+    function letterInWord(letter) {
         let j = newWord.length;
         let found = false;
-        for (var i=0; i<j; i++) {
-            
+        for (var i=0; i<j; i++) {  
              if (letter === newWord[i]) {
                 console.log("j: ", j,"i: ",i,newWord[i]);
                 found = true;

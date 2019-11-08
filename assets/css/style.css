@@ -1,15 +1,36 @@
-body {
-    background-image: url(../images/cellar.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-    color: white;
-    display: flex;
-}
-.container {
-    margin: auto;
-    text-align: center;
-}
-#currentWord {
-    letter-spacing: 10px;
-}
+
+        .title {
+            font-family: 'Knewave', cursive !important;
+        }
+        .pizarra {
+            border: #382b1e 20px solid  ;
+            border-radius: 25px !important;
+            background-repeat: no-repeat;
+            height: 400px;
+            background-color: #194858;
+            color: white;
+        }
+        .monitos {
+            padding-top:25px;
+            vertical-align: bottom;
+            width: 85%;
+        }
+        #gameData {
+            border: #c1996b   solid 5px;
+            border-radius: 10px;
+            margin: 10px;
+        }
+        #wordToGuess {
+            font-family: 'Knewave', cursive !important;
+        }
+        #winsDiv {
+            font-family: 'Knewave', cursive !important;
+            border: green, dotted, 3px !important;
+        }
+        #losesDiv {
+            font-family: 'Knewave', cursive !important;
+            border: red, dotted, 3px !important;
+        }
+        #lettersGuessed {
+            font-family: 'Knewave', cursive !important;
+        }
